@@ -1,0 +1,15 @@
+{
+  "name": "naturalis-galaxy",
+  "version": "0.1.0",
+  "author": "atze.devries@naturalis.nl",
+  "summary": "Deployes galaxyproject for naturalis",
+  "license": "Apache-2.0",
+  "source": "https://github.com/naturalis/galaxy",
+  "project_page": "https://github.com/naturalis/galaxy",
+  "issues_url": "https://github.com/naturalis/galaxy/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
