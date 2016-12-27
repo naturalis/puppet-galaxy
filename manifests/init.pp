@@ -49,15 +49,11 @@ class galaxy
     $docker_build   = $galaxy::params::docker_build,
     $db_host        = $galaxy::params::db_host,
     $db_pass        = $galaxy::params::db_pass,
-) inherits ::galaxy::params.pp
+) inherits ::galaxy::params
 {
 
 
 include ::galaxy::install
-
-
-
-
 
 
 

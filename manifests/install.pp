@@ -1,7 +1,7 @@
 #
 #
 #
-class galaxy::install inherits ::galaxy::params.pp
+class galaxy::install inherits ::galaxy::params
 {
   vcsrepo {'/opt/galaxy':
     provider => git,
@@ -12,5 +12,6 @@ class galaxy::install inherits ::galaxy::params.pp
   file {'/docker-entrypoint.sh':
     ensure => $::galaxy::params::docker_payload,
     source => 'puppet:///modules/galaxy/docker/docker-entrypoint.sh',
+    mode   => '0770',
   }
 }
