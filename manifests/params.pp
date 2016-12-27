@@ -15,7 +15,6 @@ class galaxy::params {
   if ($docker_build) {
     $galaxy_db = '__GALAXY_DB'
     $docker_payload = present
-    $pip
   }else{
     $galaxy_db = "postgres://postgres:${db_pass}@${db_host}:5432/postgres"
     $docker_payload = absent
