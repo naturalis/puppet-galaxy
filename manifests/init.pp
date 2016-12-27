@@ -42,7 +42,23 @@
 #
 # Copyright 2016 Your name here, unless otherwise noted.
 #
-class galaxy {
+class galaxy
+(
+    $version        = $galaxy::params::version,
+    $manage_service = $galaxy::params::manage_service,
+    $docker_build   = $galaxy::params::docker_build,
+    $db_host        = $galaxy::params::db_host,
+    $db_pass        = $galaxy::params::db_pass,
+) inherits ::galaxy::params.pp
+{
+
+
+include ::galaxy::install
+
+
+
+
+
 
 
 }
