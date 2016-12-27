@@ -25,21 +25,14 @@ class galaxy::install inherits ::galaxy::params
       content => template('galaxy/galaxy.ini.template.erb'),
     }
 
-    python::dotfile { '/root/.pip/pip.conf':
-      config => {
-        'global' => {
-        'index-url' => 'https://wheels.galaxyproject.org/simple',
-        }
-      }
+    $pip_cmd_args = ' --index-url https://wheels.galaxyproject.org/simple'
+
+    exec { "/usr/bin/pip install -r /opt/galaxy/requirements.txt ${pip_cmd_args}" :
+      require => Vcsrepo['/opt/galaxy']
     }
 
-    python::requirements { '/opt/galaxy/requirements.txt':
-      require => [ Vcsrepo['/opt/galaxy'], Python::Dotfile['/root/.pip/pip.conf'] ]
-    }
-
-    python::pip { 'psycopg2':
-      ensure  => '2.6.1',
-      require => Python::Dotfile['/root/.pip/pip.conf'],
+    exec { "/usr/bin/pip install psycopg2==2.6.1 ${pip_cmd_args}" :
+      require => Vcsrepo['/opt/galaxy']
     }
 
   }else{
