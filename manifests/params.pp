@@ -11,6 +11,8 @@ class galaxy::params {
   $gmail_password = 'galaxy_password'
   $gmail_address = 'galaxymail@gmail.com'
   $admin_users = 'None'
+  $pip_bin = '/usr/bin/pip'
+  $galaxy_ini_template = 'galaxy/galaxy.ini.template.erb'
 
   if ($docker_build) {
     $galaxy_db = '__GALAXY_DB'

@@ -51,10 +51,7 @@ class galaxy
     $db_pass        = $galaxy::params::db_pass,
 ) inherits ::galaxy::params
 {
-
-
-include ::galaxy::install
-
-
-
+  class{ '::galaxy::install' : } ->
+  class{ '::galaxy::naturalis_packages' : } ->
+  class{ '::galaxy::naturalis_config' : }
 }

@@ -3,6 +3,8 @@
 #
 class galaxy::install inherits ::galaxy::params
 {
+  ensure_packages(['python-pip'])
+
   vcsrepo {'/opt/galaxy':
     provider => git,
     source   => 'git://github.com/galaxyproject/galaxy',
@@ -22,22 +24,22 @@ class galaxy::install inherits ::galaxy::params
   if ($::galaxy::params::docker_build) {
 
     file {'/opt/galaxy.ini.template':
-      content => template('galaxy/galaxy.ini.template.erb'),
+      content => template($::galaxy::params::galaxy_ini_template),
     }
 
     $pip_cmd_args = ' --index-url https://wheels.galaxyproject.org/simple'
 
-    exec { "/usr/bin/pip install -r /opt/galaxy/requirements.txt ${pip_cmd_args}" :
+    exec { "${::galaxy::params::pip_bin} install -r /opt/galaxy/requirements.txt ${pip_cmd_args}" :
       require => Vcsrepo['/opt/galaxy']
     }
 
-    exec { "/usr/bin/pip install psycopg2==2.6.1 ${pip_cmd_args}" :
+    exec { "${::galaxy::params::pip_bin} install psycopg2==2.6.1 ${pip_cmd_args}" :
       require => Vcsrepo['/opt/galaxy']
     }
 
   }else{
     file {'/opt/galaxy/config/galaxy.ini':
-      content => template('galaxy/galaxy.ini.template.erb'),
+      content => template($::galaxy::params::galaxy_ini_template),
       require => Vcsrepo['/opt/galaxy'],
     }
   }
