@@ -22,7 +22,7 @@ smtp_password = <%= scope.lookupvar("galaxy::params::gmail_password") %>
 mailing_join_addr =
 error_email_to =  <%= scope.lookupvar("galaxy::params::gmail_address") %>
 email_from =  <%= scope.lookupvar("galaxy::params::gmail_address") %>
-user_activation_on = True
+user_activation_on = <%= scope.lookupvar("galaxy::params::user_activation") %>
 activation_grace_period = 0
 session_duration = 600
 use_nglims = False

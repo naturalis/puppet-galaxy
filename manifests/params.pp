@@ -7,10 +7,11 @@ class galaxy::params {
   $docker_build = true
   $db_host = 'localhost'
   $db_pass = 'password'
+  $user_activation = 'True'
   $gmail_user = 'galaxymail'
   $gmail_password = 'galaxy_password'
   $gmail_address = 'galaxymail@gmail.com'
-  $admin_users = 'None'
+  $admin_users = 'aut@naturalis.nl'
   $pip_bin = '/usr/bin/pip'
   $galaxy_ini_template = 'galaxy/galaxy.ini.template.erb'
 
